@@ -18,10 +18,23 @@
 
         .container {
             width: 100%;
-            height: 100%;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
+        }
+
+        .btn-style {
+            text-decoration: none;
+            width: 100%;
+            padding: 13px 20px 13px 20px;
+            background: #25c187;
+            margin: 0;
+            border: none;
+            font-weight: 700;
+            color: #ffffff;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -32,12 +45,9 @@
         <p style="font-weight: 800; padding: 10px">1. Click the button on your right to proceed. <br> 2. Add the
             filterlist to your ad blocker. <br> 3. Click "DONE". </p> <br>
         <div>
-            <a id="abc"
-                style="text-decoration: none;width: 100%;padding: 13px 20px 13px 20px;background: #25c187;margin: 0;border: none;font-weight: 700;color: #ffffff;cursor: pointer;">WHITELIST
-                WORK.INK</a>
+            <a id="abc" class="btn-style">WHITELIST WORK.INK</a>
             <br> <br> <br> <br>
-            <a id="abcd"
-                style="text-decoration: none;width: 100%;padding: 13px 20px 13px 20px;background: #25c187;margin: 0;border: none;font-weight: 700;color: #ffffff;cursor: pointer;">DONE?</a>
+            <a id="abcd" class="btn-style">DONE?</a>
         </div>
     </div>
     <script>
