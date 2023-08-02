@@ -36,6 +36,11 @@
             color: #ffffff;
             cursor: pointer;
         }
+
+        .btn-disabled {
+            background: #cccccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 
@@ -47,7 +52,7 @@
         <div>
             <a id="abc" class="btn-style">WHITELIST</a>
             <br> <br> <br> <br>
-            <a id="abcd" class="btn-style">DONE?</a>
+            <a id="abcd" class="btn-style btn-disabled" disabled>DONE?</a>
         </div>
     </div>
     <script>
@@ -63,12 +68,18 @@
 
         var redirectUrl = getParameterByName('redirect');
         var whitelistUrl = getParameterByName('whitelist');
+        var doneBtn = document.getElementById("abcd");
 
         document.getElementById("abc").addEventListener("click", function () {
             this.href = 'abp:subscribe?location=' + encodeURIComponent(whitelistUrl) + '&title=Workink%20Smart%20Browsing';
+            doneBtn.classList.remove("btn-disabled");
+            doneBtn.disabled = false;
         });
-        document.getElementById("abcd").addEventListener("click", function () {
-            window.location.href = redirectUrl;
+        
+        doneBtn.addEventListener("click", function () {
+            if (!this.disabled) {
+                window.location.href = redirectUrl;
+            }
         });
     </script>
 
