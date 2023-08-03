@@ -65,23 +65,47 @@
             if (!results[2]) return '';
             return decodeURIComponent(results[2].replace(/\+/g, ' '));
         }
-
+    
         var redirectUrl = getParameterByName('redirect');
         var whitelistUrl = getParameterByName('whitelist');
         var doneBtn = document.getElementById("abcd");
-
+    
+        // Function to remove parameters from url
+        function removeParam(key, sourceURL) {
+            var rtn = sourceURL.split("?")[0],
+                param,
+                params_arr = [],
+                queryString = (sourceURL.indexOf("?") !== -1) ? sourceURL.split("?")[1] : "";
+            if (queryString !== "") {
+                params_arr = queryString.split("&");
+                for (var i = params_arr.length - 1; i >= 0; i -= 1) {
+                    param = params_arr[i].split("=")[0];
+                    if (param === key) {
+                        params_arr.splice(i, 1);
+                    }
+                }
+                rtn = rtn + "?" + params_arr.join("&");
+            }
+            return rtn;
+        }
+    
+        // Remove parameters from the URL
+        window.history.replaceState({}, document.title, removeParam('redirect', window.location.href));
+        window.history.replaceState({}, document.title, removeParam('whitelist', window.location.href));
+    
         document.getElementById("abc").addEventListener("click", function () {
             this.href = 'abp:subscribe?location=' + encodeURIComponent(whitelistUrl) + '&title=Workink%20Smart%20Browsing';
             doneBtn.classList.remove("btn-disabled");
             doneBtn.disabled = false;
         });
-        
+    
         doneBtn.addEventListener("click", function () {
             if (!this.disabled) {
                 window.location.href = redirectUrl;
             }
         });
     </script>
+    
 
 </body>
 
